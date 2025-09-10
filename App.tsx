@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Product, Sale } from './types';
-import dbService from './services/mockDbService';
+import dbService from './services/dbService';
 import POSView from './components/pos/POSView';
 import InventoryView from './components/inventory/InventoryView';
 import ReportsView from './components/reports/ReportsView';

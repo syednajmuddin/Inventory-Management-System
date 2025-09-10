@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import type { Product } from '../../types';
-import dbService from '../../services/mockDbService';
+import dbService from '../../services/dbService';
 import { PlusIcon, EditIcon } from '../shared/Icons';
 
 // Product Form Modal Component
@@ -92,10 +92,15 @@ const InventoryView: React.FC<{ products: Product[]; onDataChange: () => void }>
     };
 
     const handleSaveProduct = async (productData: Omit<Product, 'id' | 'imageUrl'> | Product) => {
-        if ('id' in productData) {
-            await dbService.updateProduct(productData);
-        } else {
-            await dbService.addProduct(productData);
+        try {
+            if ('id' in productData) {
+                await dbService.updateProduct(productData);
+            } else {
+                await dbService.addProduct(productData);
+            }
+        } catch (error) {
+             console.error("Failed to save product:", error);
+            alert(`Failed to save product: ${error instanceof Error ? error.message : "Unknown error"}`);
         }
         onDataChange();
         handleCloseModal();

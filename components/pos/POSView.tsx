@@ -1,7 +1,7 @@
 
 import React, { useState, useCallback, useMemo } from 'react';
 import type { Product, CartItem, SaleItem, Sale } from '../../types';
-import dbService from '../../services/mockDbService';
+import dbService from '../../services/dbService';
 import { PlusIcon, MinusIcon, TrashIcon } from '../shared/Icons';
 
 // ProductCard Component
